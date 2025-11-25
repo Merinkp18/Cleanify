@@ -1,7 +1,11 @@
 <?php
 session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../Akun/login.php");
+    exit;
+}
 ?>
-
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -366,3 +370,4 @@ session_start();
 
 </body>
 </html>
+
