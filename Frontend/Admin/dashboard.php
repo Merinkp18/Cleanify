@@ -1,11 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../Akun/login.php");
-    exit;
-}
+
+$page = $_GET['page'] ?? 'dashboard';
+
 ?>
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +47,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
         .sidebar a:hover,
         .sidebar a.active {
-            background: #41aba0;
+            background: #0072CF;
             color: #fff;
         }
 
@@ -130,7 +129,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         }
 
         .card-box {
-            background: #9292ff;
+            background: #0072CF;
             color: white;
             padding: 20px;
             border-radius: 12px;
@@ -158,11 +157,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             border-radius: 12px;
             box-shadow: 0 2px 6px rgba(0,0,0,.1);
         }
+		
+		
 
         .chart-card h5 {
             font-weight: bold;
             margin-bottom: 15px;
-            color: #41aba0;
+            color: #0072CF;
         }
 
         .chart-card canvas {
@@ -188,7 +189,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         .table-card h4 {
             margin-bottom: 20px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #0072CF;
         }
 
         .table {
@@ -203,7 +204,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         }
 
         .table thead th {
-            background: #41aba0 !important;
+            background: #0072CF !important;
             color: #fff;
             border: 1px solid #3f928d !important;
         }
@@ -296,44 +297,19 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             </div>
         </div>
 
-        <div class="table-card">
-            <h4>Order Terbaru</h4>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID Order</th>
-                        <th>Customer</th>
-                        <th>Layanan</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#00123</td>
-                        <td>Merin</td>
-                        <td>Deep Cleaning</td>
-                        <td>18 Nov 2025</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>#00122</td>
-                        <td>Kharis</td>
-                        <td>AC Cleaning</td>
-                        <td>17 Nov 2025</td>
-                        <td><span class="status process">On Process</span></td>
-                    </tr>
-                    <tr>
-                        <td>#00121</td>
-                        <td>Ravi</td>
-                        <td>Regular Cleaning</td>
-                        <td>17 Nov 2025</td>
-                        <td><span class="status done">Done</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="table-card"> 
+			<h4>Order Terbaru</h4> 
+				<table class="table"> 
+					<thead>
+						<tr> 
+							<th>ID Order</th> 
+							<th>Customer</th> 
+							<th>Layanan</th> 
+							<th>Tanggal</th> 
+							<th>Status</th> 
+						</tr> 
+					</thead> 
+					
 
     </div>
 
@@ -370,4 +346,3 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 </body>
 </html>
-
