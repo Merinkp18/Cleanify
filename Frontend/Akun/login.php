@@ -1,60 +1,8 @@
 <?php
 session_start();
-include '../../Backend/db.php';
-
-if (isset($_POST['login'])) {
-    $input    = $_POST['email'];  // bisa username atau email
-    $password = $_POST['password'];
-
-    // CEK USERNAME ATAU EMAIL
-    $sql = "SELECT * FROM users WHERE email='$input' OR username='$input'";
-    $result = mysqli_query($conn, $sql);
-    $user = mysqli_fetch_assoc($result);
-
-    // CEK PASSWORD
-    if ($user && password_verify($password, $user['password'])) {
-
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-
-        if ($user['role'] === 'admin') {
-            header("Location: ../Admin/dashboard.php");
-            exit;
-        } 
-        elseif ($user['role'] === 'cleaner') {
-            header("Location: ../Admin/dashboard.php");
-            exit;
-        } 
-        else {
-            header("Location: home.php");
-            exit;
-        }
-
-    } else {
-        echo "<script>alert('Email atau password salah!');</script>";
-    }
-}
+$login_error = $_SESSION['login_error'] ?? null;
+unset($_SESSION['login_error']);
 ?>
-	
-if (isset($_POST['login'])) {
-    $email    = $_POST['email'];
-    $password = $_POST['password'];
-
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
-    $row = mysqli_fetch_assoc($result);
-
-    if ($row && password_verify($password, $row['password'])) {
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['username'] = $row['username'];
-        header("Location: home.php");
-        exit;
-    } else {
-        echo "<script>alert('Email atau password salah!');</script>";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,51 +26,57 @@ if (isset($_POST['login'])) {
       background-color: #f1f1f1;
     }
     .btn-apple {
-	 background-color: #fff;
-     border: 1px solid #ddd;
-     color: #555;
-	}
-	.btn-apple:hover {
-	 background-color: #f1f1f1;   
-	}
-	.btn-apple img {
-	 filter: none; 
-	}
-	.divider {
-	display: flex;
-	align-items: center;     /* bikin teks or sejajar vertikal */
-	text-align: center;
-	color: #6c757d;          /* warna teks abu-abu */
-	margin: 15px 0;          /* jarak atas bawah */
-	}
-
-	.divider::before,
-	.divider::after {
-	content: "";
-	flex: 1;                 /* garis kiri-kanan panjang otomatis */
-	border-bottom: 1px solid #ddd;  /* garis abu-abu muda */
-	}
-
-	.divider:not(:empty)::before {
-	margin-right: .75em;     /* jarak kanan teks */
-	}
-
-	.divider:not(:empty)::after {
-	margin-left: .75em;      /* jarak kiri teks */
-	}
+      background-color: #fff;
+      border: 1px solid #ddd;
+      color: #555;
+    }
+    .btn-apple:hover {
+      background-color: #f1f1f1;   
+    }
+    .btn-apple img {
+      filter: none; 
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #6c757d;
+      margin: 15px 0;
+    }
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #ddd;
+    }
+    .divider:not(:empty)::before {
+      margin-right: .75em;
+    }
+    .divider:not(:empty)::after {
+      margin-left: .75em;
+    }
   </style>
 </head>
 <body>
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-4">
-        <div class="card  p-4">
-		  <img src="assets/logo3.png" alt="Cleanify Logo" width="100" class="mb-1" style="display: block; margin: 0 auto;">
+        <div class="card p-4">
+          <img src="assets/logo3.png" alt="Cleanify Logo" width="100" class="mb-1" style="display: block; margin: 0 auto;">
           <h3 class="text-center mb-4">Sign In to Cleanify</h3>
-          <form method="POST">
+
+          <?php if ($login_error): ?>
+            <div class="alert alert-danger py-2">
+              <?= htmlspecialchars($login_error, ENT_QUOTES, 'UTF-8'); ?>
+            </div>
+          <?php endif; ?>
+
+          <!-- SATU form saja, langsung ke Backend -->
+          <form method="POST" action="../../Backend/login_proccess.php">
             <div class="mb-3">
               <label>Username or email address</label>
-              <input type="email" name="email" class="form-control" required>
+              <!-- type=text biar username tanpa @ bisa -->
+              <input type="text" name="email" class="form-control" required>
             </div>
             <div class="mb-3">
               <label>Password</label>
@@ -147,10 +101,10 @@ if (isset($_POST['login'])) {
               New to Cleanify? <a href="register.php">Create an account</a>
             </p>
           </form>
+
         </div>
       </div>
     </div>
   </div>
 </body>
 </html>
-
