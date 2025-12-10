@@ -32,17 +32,7 @@ unset($_SESSION['register_success']);
     .btn-google:hover {
       background-color: #f1f1f1;
     }
-    .btn-apple {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      color: #555;
-    }
-    .btn-apple:hover {
-      background-color: #f1f1f1;   
-    }
-    .btn-apple img {
-      filter: none; 
-    }
+    
     .divider {
       display: flex;
       align-items: center;
@@ -107,10 +97,7 @@ unset($_SESSION['register_success']);
                 <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" width="20" class="me-2">
                 Continue with Google
               </button>
-              <button type="button" class="btn btn-apple w-100">
-                <img src="https://cdn-icons-png.flaticon.com/512/179/179309.png" width="25" class="me-2">
-                Continue with Apple
-              </button>
+              
             </div>
 
             <p class="text-center mt-4 mb-0">
