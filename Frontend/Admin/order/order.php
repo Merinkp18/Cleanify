@@ -24,7 +24,7 @@ $totalPages = max(1, (int)ceil($total / $limit));
   }
 
   .order-box{
-    background: #0072CF;
+   
     border-radius: 14px;
     padding: 18px;
     margin-top: 18px;
