@@ -18,12 +18,12 @@ unset($_SESSION['register_error'], $_SESSION['register_success']);
   <style>
     body { background-color: #f8f9fa; }
     .card { border-radius: 10px; border: none; }
-    .btn-google, .btn-apple {
+    .btn-google {
       background-color: #fff; 
       border: 1px solid #ddd; 
       color: #555;
     }
-    .btn-google:hover, .btn-apple:hover { background-color: #f1f1f1; }
+    .btn-google:hover { background-color: #f1f1f1; }
     .divider {
       display: flex;
       align-items: center;
@@ -68,10 +68,7 @@ unset($_SESSION['register_error'], $_SESSION['register_success']);
                 <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" width="20" class="me-2">
                 Continue with Google
               </button>
-              <button type="button" class="btn btn-apple w-100 mb-2">
-                <img src="https://cdn-icons-png.flaticon.com/512/179/179309.png" width="25" class="me-2">
-                Continue with Apple
-              </button>
+              
             </div>
 
             <div class="divider mb-2">or</div>
