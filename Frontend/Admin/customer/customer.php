@@ -181,7 +181,7 @@ $result = $stmt->get_result();
 
               <td class="td-aksi">
                 <a href="<?= htmlspecialchars($dash) ?>?page=customer_detail&id=<?= (int)$row['id']; ?>" class="btn btn-info btn-sm">Detail</a>
-                <a href="<?= htmlspecialchars($dash) ?>?page=customer_update&id=<?= (int)$row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                
                 <a href="<?= htmlspecialchars($dash) ?>?page=customer_delete&id=<?= (int)$row['id']; ?>"
                    onclick="return confirm('Hapus customer ini?');"
                    class="btn btn-danger btn-sm">Hapus</a>
