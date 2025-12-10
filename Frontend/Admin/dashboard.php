@@ -105,15 +105,34 @@ $latestOrders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 
         /* SIDEBAR */
         .sidebar {
-            width: 230px;
-            height: 100vh;
-            background: #2c3e50;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 80px;
-            color: #fff;
-        }
+			width: 230px;
+			height: 100vh;
+			background: #2c3e50;
+			position: fixed;
+			top: 0;
+			left: 0;
+			padding-top: 40px;     /* dikurangi, supaya foto naik */
+			color: #fff;
+		}
+
+		/* CONTAINER UNTUK FOTO */
+		.sidebar-header {
+			display: flex;
+			flex-direction: column;
+			align-items: center;     /* center horizontal */
+			justify-content: center; /* center vertical */
+			margin-bottom: 20px;
+		}
+
+		/* FOTO DI SIDEBAR */
+		.sidebar-photo {
+			width: 90px;
+			height: 90px;
+			object-fit: cover;
+			border-radius: 50%;
+			border: 3px solid #0072CF;
+			margin-bottom: 10px;
+		}
 
         .sidebar a {
             display: block;
@@ -324,14 +343,20 @@ $latestOrders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <?php if ($_SESSION['role'] === 'admin'): ?>
-            <a href="dashboard.php?page=home" class="<?= ($page==='home'?'active':'') ?>"><i class="fa fa-home"></i> Dashboard</a>
-            <a href="dashboard.php?page=layanan" class="<?= ($page==='layanan'?'active':'') ?>"><i class="fa fa-broom"></i> Layanan</a>
-            <a href="dashboard.php?page=order" class="<?= ($page==='order'?'active':'') ?>"><i class="fa fa-shopping-cart"></i> Order</a>
-            <a href="dashboard.php?page=jadwal" class="<?= ($page==='jadwal'?'active':'') ?>"><i class="fa fa-calendar"></i> Jadwal</a>
-            <a href="dashboard.php?page=customer" class="<?= ($page==='customer'?'active':'') ?>"><i class="fa fa-users"></i> Customer</a>
-            <a href="dashboard.php?page=pekerja" class="<?= ($page==='pekerja'?'active':'') ?>"><i class="fa fa-user-tie"></i> Pekerja</a>
-        <?php endif; ?>
+		<div class="sidebar-header">
+			<img src="assets/admin.jpeg" alt="Logo" class="sidebar-photo">
+			<h5 style="text-align:center; margin-top:10px;color:white;">Admin Redup</h5>
+		</div>
+    
+			<?php if ($_SESSION['role'] === 'admin'): ?>
+				<a href="dashboard.php?page=home" class="<?= ($page==='home'?'active':'') ?>"><i class="fa fa-home"></i> Dashboard</a>
+				<a href="dashboard.php?page=layanan" class="<?= ($page==='layanan'?'active':'') ?>"><i class="fa fa-broom"></i> Layanan</a>
+				<a href="dashboard.php?page=order" class="<?= ($page==='order'?'active':'') ?>"><i class="fa fa-shopping-cart"></i> Order</a>
+				<a href="dashboard.php?page=jadwal" class="<?= ($page==='jadwal'?'active':'') ?>"><i class="fa fa-calendar"></i> Jadwal</a>
+				<a href="dashboard.php?page=customer" class="<?= ($page==='customer'?'active':'') ?>"><i class="fa fa-users"></i> Customer</a>
+				<a href="dashboard.php?page=pekerja" class="<?= ($page==='pekerja'?'active':'') ?>"><i class="fa fa-user-tie"></i> Pekerja</a>
+			<?php endif; ?>
+		
     </div>
 
     <!-- TOPBAR -->
@@ -341,19 +366,7 @@ $latestOrders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
             <h4 style="margin:0; color:#333;">Dashboard Admin</h4>
         </div>
 
-        <div class="topbar-right">
-            <div class="icon-wrapper">
-                <i class="fa fa-bell"></i>
-                <span class="badge-notif">3</span>
-            </div>
-
-            <div class="icon-wrapper">
-                <i class="fa fa-envelope"></i>
-                <span class="badge-message">4</span>
-            </div>
-
-            <img src="Admin/assets/profile.jpg" class="profile-img">
-        </div>
+        
     </div>
 
     <!-- MAIN CONTENT -->
