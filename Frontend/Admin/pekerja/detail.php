@@ -70,7 +70,7 @@ function esc($v) {
         <th>Photo</th>
         <td>
             <?php if (!empty($row['photo'])): ?>
-                <img src="asset/<?= esc($row['photo']); ?>" width="120" height="120" style="border-radius:10px; object-fit:cover;">
+                <img src="pekerja/assets/uploads/<?= esc($row['photo']); ?>" width="120" height="120" style="border-radius:10px; object-fit:cover;">
             <?php else: ?>
                 <i>Tidak ada foto</i>
             <?php endif; ?>
