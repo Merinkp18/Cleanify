@@ -1,4 +1,4 @@
 <?php
-header("Location: Frontend/Akun/login.php");
+header("Location: Frontend/User/Dashboard.php");
 exit;
 ?>
